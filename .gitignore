@@ -12,3 +12,7 @@ addon/doc/en/
 *.py[co]
 *.nvda-addon
 .sconsign.dblite
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
