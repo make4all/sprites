@@ -1,0 +1,31 @@
+---
+layout: subpage
+part: 1
+id: 0
+---
+<h1>Example Table with NVDA Navigation</h1>
+<p>
+    NVDA currently supports table navigation using the arrow keys, tab and
+    shift+tab, and by holding control+alt with the arrow keys. Instead of going
+    from cell to cell using arrow keys, SPRITEs lets you navigate to a specific
+    row and column of a table using its spatial structure.  SPRITEs maps row
+    and column numbers to the leftmost column and the first row of your keyboard,
+    excluding the function-row keys (i.e. the row containing Escape, f1, f2, f3, and
+    so on). The keys for switching between rows include keys graav, tab, capslock,
+    left shift, and left control. The keys for switching between columns include
+    the number keys 1 through 0, and - and =. 
+</p>
+<p>
+    By default, row 1 and column 1 of the table are selected when SPRITEs mode
+    is activated, which means the keys graav and 1 would initially map to the
+    cell at row 1 column 1. Pressing a column or row key once changes the selection
+    to the corresponding column or row of the table. At any point during the
+    tutorial, you can exit SPRITEs by pressing the Escape key to start over
+    again.
+</p>
+<p>
+    Below is a table containing flight information from Seattle to New York City.
+    Use the NVDA table navigation shortcuts to get familiar with the table. Then
+    when you are ready, press Next. 
+</p>
+{% include example-table.html %}

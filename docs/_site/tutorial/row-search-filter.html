@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-TNFMC5J');
+    </script>
+    <!-- End Google Tag Manager -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176793904-1"></script>
+    <script src="/assets/js/consent-form.js"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      if (document.cookie.split(';').some((item) => item.includes('spritesconsent=false'))) {
+        window['ga-disable-UA-176793904-1'] = true;
+      }
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-176793904-1');
+    </script>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <title>SPRITEs NVDA Add-on Tutorial</title>
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>SPRITEs-NVDA Add-on Tutorial | Step-by-step tutorial on how to use the SPRITEs Add-on with NVDA, including keyboard navigation and keyword search.</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="SPRITEs-NVDA Add-on Tutorial" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Step-by-step tutorial on how to use the SPRITEs Add-on with NVDA, including keyboard navigation and keyword search." />
+<meta property="og:description" content="Step-by-step tutorial on how to use the SPRITEs Add-on with NVDA, including keyboard navigation and keyword search." />
+<link rel="canonical" href="http://localhost:4000/tutorial/row-search-filter.html" />
+<meta property="og:url" content="http://localhost:4000/tutorial/row-search-filter.html" />
+<meta property="og:site_name" content="SPRITEs-NVDA Add-on Tutorial" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="SPRITEs-NVDA Add-on Tutorial" />
+<script type="application/ld+json">
+{"description":"Step-by-step tutorial on how to use the SPRITEs Add-on with NVDA, including keyboard navigation and keyword search.","url":"http://localhost:4000/tutorial/row-search-filter.html","headline":"SPRITEs-NVDA Add-on Tutorial","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TNFMC5J"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <h1 id="project_title">SPRITEs-NVDA Add-on Tutorial</h1>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+
+    <div id="main_content_wrap" class="outer">
+      <section id="consent_form" class='inner hidden'>
+    <h1>Consent for Improving Interaction Study</h1>
+    <form>
+      <p>
+        Thank you for visiting the SPRITEs tutorial website! SPRITEs is an
+        NVDA addon that introduces a new way to navigate tables using your
+        keyboard, on google chrome. We wanted to give you some information
+        before you continue to use this website. The purpose of this website
+        is to provide information or to host a tutorial to teach you to use
+        our improved interaction techniques. With your consent, we would like
+        to gather basic usage information like time spent on each webpage and
+        the buttons or links that you click on or activate as you use this
+        website. Please note that this aggregated information can not be used
+        to identify you and will be stored securely in a separate location
+        from any data you may explicitly provide in this website. Aggregated
+        data received from this website may be used to improve our tools and
+        provide better experiences, and may also be used in scientific
+        publications or blogs to communicate the efficacy of the interaction
+        techniques we develop. Please note that you can continue to use the
+        website even if you chose to not provide the data mentioned above, but
+        functionality may be limited in some cases. This addon, and the
+        tutorial are research products and we appreciate any feedback via
+        this google form or issues and feature requests via GitHub. Please
+        choose an option below to continue.
+    </p>
+      <div class='form-options'>
+        <div class='form-group'>
+            <input type='radio' id='yes' name='consent-option' value='true'>
+            <label for='yes'>
+                I consent to provide data (such as time spent on each webpage,
+                and buttons and links I click) about my usage of this website.
+                I also understand that this data may be used in public dissemination
+                of the interaction techniques that this website demonstrates or helps
+                me learn.
+            </label>
+        </div>
+        <div class='form-group'>
+            <input type='radio' id='no' name='consent-option' value='false'>
+            <label for='no'>
+                I do not wish to provide usage data. I understand that
+                the website’s functionality may be impacted in a few situations.
+            </label>
+        </div>
+      </div>
+      <div id='submit-warning' class='hidden'>
+        <p role='alert'>*Please select one of the options above.</p>
+      </div>
+      <div>
+        <button type='submit'>Submit</button>
+      </div>
+    </form>
+</section>
+      <section id="main_content" class="inner">
+        <h1>Applying Row Search Filter</h1>
+<p>
+    SPRITEs also allows you to apply filters to the table such that only
+    relevant rows and/or columns containing the searched term will be mapped
+    to the keyboard, to make it easier for you to locate the search results
+    and quickly navigate between them without constantly realigning the table.
+    Let’s try out the row filter first. With the same table below, activate
+    SPRITEs search and enter “delta” as a keyword. Then check the “Advanced”
+    checkbox, which will enable two more options, “Filter to relevant rows”
+    and “Filter to relevant columns”. Check the “Filter to relevant rows” option,
+    then press the search button. After the search is completed, since only
+    two rows in the original table
+    contain “delta”, the key graav will map to row 2 and tab will map to row 7.
+    Press tab, and you will hear SPRITEs have switched to the cell at row 7
+    column 5, which is the second cell containing “delta”. Then you can press
+    Escape to exit search, which will remove the filter and expand the table
+    back to its original state. The keys tab and 1 still map to row 7 column 5
+    (because that’s the last cell you have selected) but graav will now map to
+    row 6, capslock map to row 8, and so on. When you are ready, exit SPRITEs
+    and press Next to continue.
+</p>
+<table>
+    <tr>
+        <th>Flight Number</th>
+        <th>Source Airport</th>
+        <th>Stops</th>
+        <th>Destination Airport</th>
+        <th>Carrier</th>
+        <th>Price</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Seattle-Tacoma International Airport (SEA), Seattle, WA</td>
+        <td>Nonstop</td>
+        <td>John F. Kennedy International Airport (JFK), New York, NY</td>
+        <td>Delta</td>
+        <td>$260</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Seattle-Tacoma International Airport (SEA), Seattle, WA</td>
+        <td>Nonstop</td>
+        <td>John F. Kennedy International Airport (JFK), New York, NY</td>
+        <td>Alaska Airlines</td>
+        <td>$262</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Seattle-Tacoma International Airport (SEA), Seattle, WA</td>
+        <td>Charlotte (CLT)</td>
+        <td>John F. Kennedy International Airport (JFK), New York, NY</td>
+        <td>American Airlines</td>
+        <td>$266</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Seattle-Tacoma International Airport (SEA), Seattle, WA</td>
+        <td>Charlotte (CLT)</td>
+        <td>LaGuardia Airport  (LGA), New York, NY</td>
+        <td>American Airlines</td>
+        <td>$270</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Seattle-Tacoma International Airport (SEA), Seattle, WA</td>
+        <td>Nonstop</td>
+        <td>Newark Liberty International Airport (EWR), Newark, NJ</td>
+        <td>United</td>
+        <td>$258</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Seattle-Tacoma International Airport (SEA), Seattle, WA</td>
+        <td>Nonstop</td>
+        <td>Newark Liberty International Airport (EWR), Newark, NJ</td>
+        <td>Delta</td>
+        <td>$256</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Seattle-Tacoma International Airport (SEA), Seattle, WA</td>
+        <td>Charlotte (CLT)</td>
+        <td>Newark Liberty International Airport (EWR), Newark, NJ</td>
+        <td>American Airlines</td>
+        <td>$265</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Seattle-Tacoma International Airport (SEA), Seattle, WA</td>
+        <td>Chicago (ORD)</td>
+        <td>Newark Liberty International Airport (EWR), Newark, NJ</td>
+        <td>American Airlines</td>
+        <td>$280</td>
+    </tr>
+</table>
+
+        <section id='links'>
+          
+          
+          
+          
+          
+          
+            <button class="prev-btn" onclick="location.href='/tutorial/case-sensitive-search.html'">Previous</button>
+          
+            <button class="home-btn" onclick="location.href='/tutorial/tutorial.html'">Back to Home</button>
+          
+            <button class="next-btn" onclick="location.href='/tutorial/column-search-filter.html'">Next</button>
+          
+        </section>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>

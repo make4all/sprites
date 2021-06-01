@@ -1,0 +1,38 @@
+---
+layout: subpage
+part: 1
+id: 1
+---
+<h1>Changing Row Selection</h1>
+<p>
+    Before we ask you to navigate the table using SPRITEs, let’s start with a
+    smaller table. Below is a table with 4 rows and 3 columns, and we will use
+    it to practice changing row selection with SPRITEs. On enabling SPRITEs mode,
+    the keys graav, tab, capslock, left shift will map to row 1 to 4, respectively,
+    and you can press those keys to explore different cells in column 1. You can
+    also press R and SPRITEs will announce the row number of the selected cell. After
+    you get the browse mode cursor to the table below this text, press NVDA+SHIFT+T
+    to activate SPRITEs mode, and try to access the cell at row 3 column 1 by
+    pressing capslock (the third row key).
+</p>
+<table>
+{% for i in (1..4) %}
+    <tr>
+    {% for j in (1..3) %}
+        <td>
+            Cell at row {{ i }} column {{ j }}
+            <br>
+            {% if i == 3 and j == 1 %}
+            Great! When you are ready, press Escape to exit SPRITEs, and press “Next” to continue.
+            {% elsif i == 3 %}
+            Now you are at the correct row, you can return to column 1 by pressing 1.
+            {% elsif j == 1 %}
+            Now you are at the correct column, press capslock to access the cell at row 3.
+            {% else %}
+            You can return to column 1 by pressing 1.
+            {% endif %}
+        </td>
+    {% endfor %}
+    </tr>
+{% endfor %}
+</table>

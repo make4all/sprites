@@ -1,0 +1,33 @@
+---
+layout: subpage
+part: 2
+id: 1
+---
+<h1>Locating Search Results with SPRITEs Navigation</h1>
+<p>
+    Just a recap, when you perform a search, SPRITEs jumps to the first search
+    result. After SPRITEs jumps to the first search result, it simply shifts the
+    table and aligns the upper left corner of your keyboard with the cell
+    containing the search result. You can explore around the table under search
+    mode with some additional announcements that help you locate other search
+    results. For example, if you switch to a column that contains 2 more search
+    results other than the current cell selected, SPRITEs will announce “2 more
+    found in this column”. As soon as you land on a search result, SPRITEs will
+    also announce “Found” before speaking the content of the cell. Now, with the
+    same table below, press NVDA+SHIFT+T to activate SPRITEs mode and press F to
+    search for “delta” again. After SPRITEs jumps to the first search result,
+    try to find the second search result in the table, which should locate at
+    row 7 column 5. Once you found it, exit the search mode and SPRITEs by
+    pressing Escape twice, then press Next to continue.
+</p>
+{% include example-table.html %}
+<h2>
+    A Note about Search Time
+</h2>
+<p>
+    Since the SPRITEs keyword search requires processing the whole table, it
+    could take a while to complete a search on a large table. While you can
+    still explore the table when SPRITEs is searching for the keyword, you will
+    hear “searching” if you attempt to press F to initiate a new search. In that
+    case, our advice is to wait patiently until the current search is completed. 
+</p>

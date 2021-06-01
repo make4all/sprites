@@ -1,0 +1,47 @@
+---
+layout: subpage
+part: 1
+id: 5
+---
+<h1>Scrolling</h1>
+<p>
+    Now let’s try to navigate a bigger table. Below is a table with 8 rows and 3
+    columns. Note that this table contains more rows than there are keys
+    available for row selection. However, you can scroll to the other set of
+    rows by double pressing the left control key (the last row key), and then
+    the keys will map to row 6 to 8 instead of row 1 to 5. To return to the
+    previous set of rows, double press tilde (the first row key). For other
+    tables with more columns, you can also scroll column-wise by double pressing
+    keys 1 (the first column key) and = (equal, the last column key) to access the
+    previous and next set of columns, respectively. After you get
+    the browse mode cursor to the table below this text, press NVDA+SHIFT+T
+    to activate SPRITEs mode, and try to access the cell at
+    row 8 column 1 by double pressing left control (the last row key) to scroll
+    to the next set of rows, then press capslock (the third row key) to go to
+    row 8.
+</p>
+<table>
+    {% for i in (1..8) %}
+        <tr>
+        {% for j in (1..3) %}
+            <td>
+                Cell at row {{ i }} column {{ j }}
+                <br>
+                {% if i == 8 and j == 1 %}
+                Great work! Feel free to try double pressing tilde to scroll back,
+                and when you are ready, press Escape to exit SPRITEs, and press
+                “Next” to continue.
+                {% elsif i == 8 %}
+                Now you are at the correct row, go back to column 1 by pressing 1.
+                {% elsif i < 6 %}
+                Double press left control to scroll to the next set of rows.
+                {% elsif j > 1 %}
+                Now you are at the right set of rows, go back to column 1 by pressing 1.
+                {% elsif j == 1 %}
+                Now you are at the right set of rows, press capslock to get to row 8.
+                {% endif %}
+            </td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>

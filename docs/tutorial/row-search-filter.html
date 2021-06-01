@@ -1,0 +1,27 @@
+---
+layout: subpage
+part: 2
+id: 4
+---
+<h1>Applying Row Search Filter</h1>
+<p>
+    SPRITEs also allows you to apply filters to the table such that only
+    relevant rows and/or columns containing the searched term will be mapped
+    to the keyboard, to make it easier for you to locate the search results
+    and quickly navigate between them without constantly realigning the table.
+    Let’s try out the row filter first. With the same table below, activate
+    SPRITEs search and enter “delta” as a keyword. Then check the “Advanced”
+    checkbox, which will enable two more options, “Filter to relevant rows”
+    and “Filter to relevant columns”. Check the “Filter to relevant rows” option,
+    then press the search button. After the search is completed, since only
+    two rows in the original table
+    contain “delta”, the key graav will map to row 2 and tab will map to row 7.
+    Press tab, and you will hear SPRITEs have switched to the cell at row 7
+    column 5, which is the second cell containing “delta”. Then you can press
+    Escape to exit search, which will remove the filter and expand the table
+    back to its original state. The keys tab and 1 still map to row 7 column 5
+    (because that’s the last cell you have selected) but graav will now map to
+    row 6, capslock map to row 8, and so on. When you are ready, exit SPRITEs
+    and press Next to continue.
+</p>
+{% include example-table.html %}

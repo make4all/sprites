@@ -1,0 +1,36 @@
+---
+layout: subpage
+part: 2
+id: 0
+---
+<h1>Performing Keyword Search with SPRITEs</h1>
+<p>
+    In addition to navigating tables by leveraging their spatial structures,
+    SPRITEs also offers a keyword search feature to help you locate the content
+    you are looking for within a table. 
+</p>
+<p>
+    Below is the same table with flight
+    information. Let’s say we want to locate flights that are offered by Delta.
+    After you get the browse mode cursor to the table below this text, press
+    NVDA+SHIFT+T to activate SPRITEs mode. Then, press F to bring up the SPRITEs
+    search dialog, where you can enter the keyword “delta”, and press tab to
+    find the search button. You will hear some advanced search options as you
+    press tab to find the search button, but we will ignore those for now. Once
+    you press search, you will hear another dialog informing you about the
+    number of occurrences found in the table within a few seconds. Pressing
+    enter will realign the row and column mapping on your keyboard, such that
+    the keys graav and 1 will be mapped to the cell with the first result at
+    row 2 column 5, which says “Found. Delta”. Note that jumping to the first
+    result simply shifts the table and aligns the upper left corner of your
+    keyboard with the cell containing the search result, so you can still use
+    the navigation gestures to explore the cells around the search result,
+    only now your column keys start at column 5 and row keys start at row 2.
+    That is, the row navigation keys (graav, tab, capslock, etc.) will map to
+    row 2 to 6 and your column keys (1, 2, 3, etc.) will be mapped to column 5 and 6.
+    Try searching with “delta” by pressing F, and explore around the search
+    result to get familiar with the table realignment. When you are ready,
+    press Escape to first exit search, then press Escape again to exit SPRITEs,
+    and press Next to go to the next step.
+</p>
+{% include example-table.html %}

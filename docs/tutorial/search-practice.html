@@ -1,0 +1,37 @@
+---
+layout: subpage
+part: 2
+id: 6
+---
+<h1>Search Practice</h1>
+<p>
+    Well done! You have reached the end of the SPRITEs tutorial and have learned
+    all the functionalities offered by SPRITEs. The following section contains some
+    optional tasks you can do to practice SPRITEs navigation and keyword search
+    on the flights table.
+    We highly recommend you to complete the tasks to get more familiar with
+    using SPRITEs, but you can also choose to skip the tasks and complete the
+    tutorial by pressing the "Back to Home" button.
+</p>
+<h2>Task 1</h2>
+<p>
+    Find all direct flights from Seattle to New York, meaning the "Stops" column
+    should contain the value “Nonstop”. What is the cheapest flight among all
+    the direct flights? For this task, try utilizing the row filter to narrow
+    down the number of rows you need to explore while comparing the results.
+</p>
+{% include example-table.html %}
+<h2>Task 2</h2>
+<p>
+    One of the New York airports has the abbreviation “JFK”. While there isn’t
+    a cell containing only the term “JFK” in the table, SPRITEs search also
+    finds cells that contain the keyword as part of the content. Try searching
+    "JFK" and find out what the full name of the airport is, and count the
+    number of flights that have the JFK airport as the destination. 
+</p>
+{% include example-table.html %}
+<h2>Task 3</h2>
+<p>
+    Find all the possible destination airports for American Airlines flights.
+</p>
+{% include example-table.html %}

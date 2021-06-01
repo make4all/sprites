@@ -1,0 +1,34 @@
+---
+layout: tutorial
+---
+<h1>Introduction</h1>
+<p>
+    SPRITEs is an NVDA add-on for Google Chrome that introduces a non-linear
+    keyboard command structure to navigate tables. This tutorial will help
+    you get started with using SPRITEs, including the gestures for table
+    navigation and keyword search within a table. 
+</p>
+<h2>Table of Contents</h2>
+<ul>
+    <li><a href='{{ site.baseurl }}/tutorial/{{ site.data.content.content[0].page-url }}'>{{ site.data.content.content[0].title }}</a></li>
+    <li>{{ site.data.content.content[1].title }}
+        <ul>
+        {% for page in site.data.content.content[1].pages %}
+            <li>
+                <a href='{{ site.baseurl }}/tutorial/{{ page.page-url }}'>{{ page.title }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </li>
+    <li>{{ site.data.content.content[2].title }}
+        <ul>
+            {% for page in site.data.content.content[2].pages %}
+                <li>
+                    <a href='{{ site.baseurl }}/tutorial/{{ page.page-url }}'>{{ page.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+</ul>
+<h2>Relevant Links</h2>
+<p><a href='{{ site.baseurl }}/index.html'>SPRITEs Add-on Homepage</a></p>

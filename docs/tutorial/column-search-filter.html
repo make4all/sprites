@@ -1,0 +1,20 @@
+---
+layout: subpage
+part: 2
+id: 5
+---
+<h1>Applying Column Search Filter</h1>
+<p>
+    Finally, let’s try applying the column filter. With the same table below,
+    activate SPRITEs search and enter “airport” as a keyword. Then check the
+    “Advanced” checkbox, and check “Filter to relevant columns”, then press the
+    search button. Since “airport” only shows up in the “Source Airport” and
+    “Destination Airport” column, the keys 1 and 2 will map to column 2 and 4.
+    Then you can press Escape to exit search, which will remove the filter and
+    expand the table back to its original state. Just like removing the row filter,
+    the last cell you selected will still map to the same column key, so if you
+    select column 4 before removing the filter, the key 2 will still map to
+    column 4, but the key 1 will map to column 3, and the key 4 map to column 5,
+    and so on. When you are ready, exit SPRITEs and press Next to continue.
+</p>
+{% include example-table.html %}
