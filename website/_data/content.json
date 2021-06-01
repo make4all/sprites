@@ -1,0 +1,74 @@
+{
+    "content": [
+        {
+            "title": "Activating and Deactivating SPRITEs",
+            "page-url": "activate.html"
+        },
+        {
+            "title": "Part 1 Basic Navigation",
+            "pages": [
+                {
+                    "title": "Example Table with NVDA Navigation",
+                    "page-url": "example-table-nvda.html"
+                },
+                {
+                    "title": "Changing Row Selection",
+                    "page-url": "change-row.html"
+                },
+                {
+                    "title": "Changing Column Selection",
+                    "page-url": "change-column.html"
+                },
+                {
+                    "title": "Changing both Row and Column Selection",
+                    "page-url": "change-row-and-column.html"
+                },
+                {
+                    "title": "Practice SPRITEs Navigation with Example Table",
+                    "page-url": "example-table-sprites.html"
+                },
+                {
+                    "title": "Scrolling",
+                    "page-url": "scroll.html"
+                },
+                {
+                    "title": "Example Table with SPRITEs Navigation",
+                    "page-url": "example-table-sprites-practice.html"
+                }
+            ]
+        },
+        {
+            "title": "Part 2 Keyword Search",
+            "pages": [
+                {
+                    "title": "Performing Keyword Search with SPRITEs",
+                    "page-url": "keyword-search.html"
+                },
+                {
+                    "title": "Locating Search Results with SPRITEs Navigation",
+                    "page-url": "locate-results-sprites.html"
+                },
+                {
+                    "title": "Locating Search Results with Arrow Keys",
+                    "page-url": "locate-results-arrow-keys.html"
+                },
+                {
+                    "title": "Case-Sensitive Search",
+                    "page-url": "case-sensitive-search.html"
+                },
+                {
+                    "title": "Applying Row Search Filter",
+                    "page-url": "row-search-filter.html"
+                },
+                {
+                    "title": "Applying Column Search Filter",
+                    "page-url": "column-search-filter.html"
+                },
+                {
+                    "title": "Search Practice",
+                    "page-url": "search-practice.html"
+                }
+            ]
+        }
+    ]
+}
