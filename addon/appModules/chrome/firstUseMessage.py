@@ -1,0 +1,49 @@
+firstUseMessage = """<p>Thank you for choosing to use SPRITEs table navigation! This
+page contains important details about information SPRITEs stores on your
+computer to help us fix bugs in case you run into difficulties while using
+this plugin. Please note that the information we log does not leave your
+computer unless you choose to send it to us. This information will also
+be cleared once every thirty days.</p>
+<p>
+Below is the information we collect as logs:
+</p>
+<ul>
+<li>
+Dimensions (number of rows X number of columns) of tables that you
+encounter when browsing the web in Google chrome.
+</li>
+<li>
+Whether you activated SPRITEs mode on a table you encountered.
+</li>
+<li>
+Navigation and scroll keys you press when in SPRITEs mode.
+</li>
+<li>
+Search configurations that you select (case-sensitivity, row/column
+filters) when performing a SPRITEs search. This does not include the
+search string.
+</li>
+<li>
+Number of occurrences, and locations (row and column numbers) of the
+search result. This does
+not include the data in the tables that SPRITEs mode is used on.
+</li>
+</ul>
+<p>
+This information is stored in plain-text on your disk. This information
+does not leave your computer unless you choose to send it to us. To look
+at the log file containing the information described above, and to send
+it to us as a part of a github issue or any other form of correspondence
+we may have in the future, you must go to the NVDA preferences, then settings,
+then go to the SPRITEs option, and select the <TBD> option. You can also
+access a web-based tutorial for SPRITEs in the same submenu.
+</p>
+
+<p>
+If you choose to close this window, it is assumed that you have read the
+information and consented to the data collection. If you do not consent to
+this data storage and collection, you can
+uninstall SPRITEs, and the log file will be deleted upon removal of the
+add-on.
+</p>
+"""
