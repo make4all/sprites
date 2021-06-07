@@ -17,11 +17,11 @@ Note that once Sprites mode is activated, all existing gestures from NVDA will b
     * For announcing row number: <kbd>r</kbd>
     * For announcing column number: <kbd>c</kbd>
     * For announcing both: <kbd>b</kbd>
-* search
+* Search
     * Activating search mode: <kbd>f</kbd>
     * Jumping between search results (if any): up arrow and down arrow
     * Exiting search (when in search mode): <kbd>Escape</kbd>
-* misc
+* Misc
     * Exiting Sprites mode (when not in search mode): <kbd>Escape</kbd>
     * Interrupt speech: right <kbd>Shift</kbd>, right <kbd>Ctrl</kbd>
 
