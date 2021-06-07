@@ -28,10 +28,10 @@ class SpritesSettingsPanel(SettingsPanel):
 		os.startfile(path)
 	
 	def onOpenTutorial(self, evt):
-		webbrowser.open('https://luckyqxw.github.io/sprites-nvda.github.io/')
+		webbrowser.open('https://make4all.github.io/sprites/tutorial/tutorial.html')
 
 	def onSubmitFeedback(self, evt):
-		webbrowser.open('https://github.com/LuckyQXW/sprites-nvda-test/issues/new?assignees=&labels=bug&template=bug_report.md&title=')
+		webbrowser.open('https://github.com/make4all/sprites/issues/new?assignees=venkateshpotluri%2C+LuckyQXW&labels=bug&template=bug_report.md&title=%5Bbug%5D%3A+sprites+does+not+%3Cconcise+title+here%3E')
 
 	def onSave(self):
 		pass

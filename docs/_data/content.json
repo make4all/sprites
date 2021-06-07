@@ -1,4 +1,12 @@
 {
+    "homepage": [
+        {
+            "sprites-paper": "https://make4all.org/wp-content/uploads/2018/04/pn1074-khuranaSC-final.pdf",
+            "make4all": "https://make4all.org/",
+            "repo": "https://github.com/make4all/sprites",
+            "documentation": "https://github.com/make4all/sprites/wiki/internals"
+        }
+    ],
     "content": [
         {
             "title": "Activating and Deactivating SPRITEs",

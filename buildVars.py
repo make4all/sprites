@@ -20,23 +20,22 @@ addon_info = {
 	# Add-on summary, usually the user visible name of the addon.
 	# Translators: Summary for this add-on
 	# to be shown on installation and add-on information found in Add-ons Manager.
-	"addon_summary": _("Add-on user visible name"),
+	"addon_summary": _("Sprites table navigation for Chrome"),
 	# Add-on description
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
-	"addon_description": _("""Description for the add-on.
-It can span multiple lines."""),
+	"addon_description": _("""This addon introduces a non-linear navigation mode called SPRITEs to navigate tables on webpages browsed using google Chrome."""),
 	# version
-	"addon_version": "1.0",
+	"addon_version": "0.9",
 	# Author(s)
-	"addon_author": "name <name@domain.com>",
+	"addon_author": "Venkatesh Potluri <vpotluri@cs.washington.edu>",
 	# URL for the add-on documentation support
-	"addon_url": None,
+	"addon_url": "https://make4all.github.io/sprites/tutorial/tutorial.html",
 	# Documentation file name
 	"addon_docFileName": "readme.html",
 	# Minimum NVDA version supported (e.g. "2018.3.0", minor version is optional)
-	"addon_minimumNVDAVersion": "2018.4.0",
+	"addon_minimumNVDAVersion": "2020.3",
 	# Last NVDA version supported/tested (e.g. "2018.4.0", ideally more recent than minimum version)
-	"addon_lastTestedNVDAVersion": "2020.2.0",
+	"addon_lastTestedNVDAVersion": "2021.1",
 	# Add-on update channel (default is None, denoting stable releases,
 	# and for development releases, use "dev".)
 	# Do not change unless you know what you are doing!
