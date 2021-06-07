@@ -7,12 +7,12 @@ Sprites is a table navigation mode that can be activated when a user navigates t
 
 ### Gestures
 
-Activating Sprites mode: NVDA+SHIFT+T
+Activating Sprites mode: <kbd>NVDA</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd>
 
 Note that once Sprites mode is activated, all existing gestures from NVDA will be disabled until the user quits Sprites mode with Escape, and only the keys defined below can be activated:
 
 * Table exploration:
-    * For switching columns: keys 1 to 9 and -, =
+    * For switching columns: keys <kbd>1</kbd> to <kbd>9</kbd> and -, =
     * For switching rows: keys `, tab, capslock, left shift, and left control
     * For announcing row number: r
     * For announcing column number: c
