@@ -12,17 +12,17 @@ Activating Sprites mode: <kbd>NVDA</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd>
 Note that once Sprites mode is activated, all existing gestures from NVDA will be disabled until the user quits Sprites mode with Escape, and only the keys defined below can be activated:
 
 * Table exploration:
-    * For switching columns: keys <kbd>1</kbd> to <kbd>9</kbd> and -, =
-    * For switching rows: keys `, tab, capslock, left shift, and left control
-    * For announcing row number: r
-    * For announcing column number: c
-    * For announcing both: b
+    * For switching columns: keys <kbd>1</kbd> to <kbd>9</kbd> and <kbd>-</kbd>, <kbd>=</kbd>
+    * For switching rows: keys <kbd>`</kbd>, <kdb>Tab</kbd>, <kbd>Capslock</kbd>, left <kdb>Shift</kbd>, and left <kbd>Ctrl</kbd> 
+    * For announcing row number: <kbd>r</kbd>
+    * For announcing column number: <kbd>c</kbd>
+    * For announcing both: <kbd>b</kbd>
 * search
-    * Activating search mode: F
+    * Activating search mode: <kbd>f</kbd>
     * Jumping between search results (if any): up arrow and down arrow
-    * Exiting search (when in search mode): Escape
+    * Exiting search (when in search mode): <kbd>Escape</kbd>
 * misc
-    * Exiting Sprites mode (when not in search mode): Escape
-    * Interrupt speech: right shift, right control
+    * Exiting Sprites mode (when not in search mode): <kbd>Escape</kbd>
+    * Interrupt speech: right <kbd>Shift</kbd>, right <kbd>Ctrl</kbd>
 
 Please [visit our tutorial](https://make4all.github.io/sprites/tutorial/tutorial.html) to learn more about how to use sprites, [file a bug](https://github.com/make4all/sprites/issues) if you find an issue, and read our [documentation](https://github.com/make4all/sprites/wiki/internals) if you would like to [contribute](https://github.com/make4all/sprites/wiki/contributing) to Sprites. We look forward to hear more about how you use Sprites!
