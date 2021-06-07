@@ -1,9 +1,9 @@
-# sprites
-Welcome to the Github repository for the SPRITEs (pronounced sprites) NVDA addon. SPRITEs, here by pronounced and refered to as Sprites, stands for Spatial Region Interaction Techniques -- a set of techniques to navigate information spatially using the keyboard. This addon is a research product developed by researchers at the [Make4All](https://make4all.org/) group group at the University of Washington based on [research](https://make4all.org/portfolio/nonvisual-interaction-techniques-at-the-keyboard-surface/) that demonstrates that these techniques could improve efficiency of keyboard navigation. Information on this page will give you a brief overview of the Addon's functionality. Please refer to our [tutorial](https://make4all.github.io/sprites/tutorial/tutorial.html) to get an in-depth understanding of the functionality of this addon. You can [download our addon from the releases page]
+# SPRITEs
+Welcome to the Github repository for the SPRITEs (pronounced sprites) NVDA addon. SPRITEs, here by pronounced and refered to as Sprites, stands for Spatial Region Interaction Techniques - a set of techniques to navigate information spatially using the keyboard. This addon is a research product developed by researchers at the [Make4All](https://make4all.org/) group group at the University of Washington based on [research](https://make4all.org/portfolio/nonvisual-interaction-techniques-at-the-keyboard-surface/) that demonstrates that these techniques could improve efficiency of keyboard navigation. Information on this page will give you a brief overview of the add-on's functionality. Please refer to our [tutorial](https://make4all.github.io/sprites/tutorial/tutorial.html) to get an in-depth understanding of the functionality of this addon. You can [download our addon from the releases page]
 
 ## Overview
 
-Sprites is a table navigation mode that can be activated when a user navigates to a table using NVDA's browse mode on Google Chrome by pressing NVDA+shift+t. Once activated, the top row on which the mode is activated is mapped to the top row of keys on the users keyboard (` to =) and the column that is selected using these top row keys is mapped to the left-most column of keys on the user's keyboard (typically `,tab,shift and control). Here are a few important shortcuts.
+Sprites is a table navigation mode that can be activated when a user navigates to a table using NVDA's browse mode on Google Chrome by pressing NVDA+shift+t. Once activated, the top row on which the mode is activated is mapped to the top row of keys on the users keyboard (1 to =) and the column that is selected using these top row keys is mapped to the left-most column of keys on the user's keyboard (typically \`, tab, shift and control). Here are a few important shortcuts.
 
 ### Gestures
 
@@ -17,11 +17,11 @@ Note that once Sprites mode is activated, all existing gestures from NVDA will b
     * For announcing row number: <kbd>r</kbd>
     * For announcing column number: <kbd>c</kbd>
     * For announcing both: <kbd>b</kbd>
-* search
+* Search
     * Activating search mode: <kbd>f</kbd>
     * Jumping between search results (if any): up arrow and down arrow
     * Exiting search (when in search mode): <kbd>Escape</kbd>
-* misc
+* Misc
     * Exiting Sprites mode (when not in search mode): <kbd>Escape</kbd>
     * Interrupt speech: right <kbd>Shift</kbd>, right <kbd>Ctrl</kbd>
 
