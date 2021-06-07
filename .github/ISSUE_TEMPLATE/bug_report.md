@@ -27,3 +27,5 @@ A clear and concise description of what you expected to happen.
 
 **Additional context**
 Add any other context about the problem here.
+
+Please also upload the log file. You can find it by opening up NVDA preferences menu, then navigate to the SPRITEs settings menu. The Open Log File Directory option should open up the directory of the log file and you can upload it here.
