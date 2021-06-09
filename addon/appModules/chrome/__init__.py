@@ -47,6 +47,10 @@ if 'logStart' not in config.conf['sprites']:
 if 'firstUse' not in config.conf['sprites']:
 	config.conf['sprites']['firstUse'] = True
 
+# Translators: The key on the right of the "0" key in the alpha-numeric part of the keyboard.
+KEY_11 = _("-")
+# Translators: The key just on the left of the backspace key.
+KEY_12 = _("=")
 
 class AppModule(appModuleHandler.AppModule):
 
@@ -78,6 +82,7 @@ class AppModule(appModuleHandler.AppModule):
 	def showFirstUseDialog(self):
 		config.conf['sprites']['firstUse'] = False
 		webbrowser.open('https://make4all.github.io/sprites/firstUseMessage.html')
+		log.info('firstUse: ' + str(config.conf['sprites']['firstUse']))
 
 	def terminate(self):
 		self.removeHooks()
@@ -132,7 +137,7 @@ class AppModule(appModuleHandler.AppModule):
 		self.specialKeys = None
 		if self.keyboard == 'EN_US':
 			self.rowKeys = ['`', 'tab', 'capsLock', 'leftShift', 'leftControl']
-			self.columnKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=']
+			self.columnKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', KEY_11, KEY_12]
 			self.specialKeys = {'capsLock', 'leftShift', 'leftControl'}
 			self.otherKeys = {'escape', 'f', 'upArrow', 'downArrow', 'rightShift', 'rightControl', 'r', 'c', 'b'}
 		# save all gestures available when sprites mode is on in a set
