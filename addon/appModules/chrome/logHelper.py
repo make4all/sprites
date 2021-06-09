@@ -10,7 +10,7 @@ class LogHelper:
 
 	def __init__(self):
 		self.path = config.conf['sprites']['logPath']
-		self.logFileName = self.path + '\log.txt'
+		self.logFileName = self.path + '\\log.txt'
 		self.lock = threading.Lock()
 		self.checkDate()
 

@@ -19,6 +19,7 @@ from .spritesTable import SpritesTable
 from .dialogs import SearchDialog
 from .dialogs import SearchResultDialog
 from .dialogs import SpritesSettingsPanel
+from .dialogs import FirstUseMessageDialog
 from .logHelper import LogHelper
 from .firstUseMessage import firstUseMessage
 import os
@@ -27,7 +28,7 @@ import uuid
 import traceback
 from datetime import date
 
-path = os.path.join(os.environ['APPDATA'], 'nvda\sprites')
+path = os.path.join(os.environ['APPDATA'], 'nvda\\sprites')
 if not os.path.exists(path):
 	os.makedirs(path)
 if 'sprites' not in config.conf:
@@ -43,8 +44,9 @@ if 'userID' not in config.conf['sprites']:
 if 'logPath' not in config.conf['sprites']:
 	config.conf['sprites']['logPath'] = path
 if 'logStart' not in config.conf['sprites']:
-	config.conf['sprites']['logStart'] = str(date.today())
-# config.conf['sprites']['firstUse'] = True
+	config.conf['sprites']['logStart'] = date.today().strftime('%Y-%m-%d')
+if 'firstUse' not in config.conf['firstUse']:
+	config.conf['sprites']['firstUse'] = True
 
 
 class AppModule(appModuleHandler.AppModule):
@@ -71,12 +73,15 @@ class AppModule(appModuleHandler.AppModule):
 		self.searchStartTime = None
 		NVDASettingsDialog.categoryClasses.append(SpritesSettingsPanel)
 		# Not a bug, for some reason it is retrieved as a string
-		if config.conf['sprites']['firstUse'] == 'True':
+		if 'firstUse' not in config.conf['sprites'] or config.conf['sprites']['firstUse'] == 'True':
 			self.showFirstUseDialog()
 
 	def showFirstUseDialog(self):
 		config.conf['sprites']['firstUse'] = False
-		ui.browseableMessage(message=firstUseMessage, title='SPRITEs initial screen with info about logging', isHtml=True)
+		gui.mainFrame.prePopup()
+		dialog = FirstUseMessageDialog(gui.mainFrame)
+		dialog.ShowModal()
+		gui.mainFrame.postPopup()
 
 	def terminate(self):
 		self.removeHooks()
@@ -236,7 +241,7 @@ class AppModule(appModuleHandler.AppModule):
 		mappedRowRange = list(self.rowKeys[0:len(mappedRows)])
 		mappedRowRange[0] = 'graav'
 
-		rowCombo = ' comma '.join(mappedRowRange)
+		rowCombo = ', '.join(mappedRowRange)
 		if len(mappedColumns) == 1:
 			columnCombo = '1'
 		else:
