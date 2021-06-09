@@ -45,7 +45,7 @@ if 'logPath' not in config.conf['sprites']:
 if 'logStart' not in config.conf['sprites']:
 	config.conf['sprites']['logStart'] = date.today().strftime('%Y-%m-%d')
 if 'firstUse' not in config.conf['sprites']:
-	config.conf['sprites']['firstUse'] = True
+	config.conf['sprites']['firstUse'] = 'True'
 
 # Translators: The key on the right of the "0" key in the alpha-numeric part of the keyboard.
 KEY_11 = _("-")
@@ -76,13 +76,14 @@ class AppModule(appModuleHandler.AppModule):
 		self.searchStartTime = None
 		NVDASettingsDialog.categoryClasses.append(SpritesSettingsPanel)
 		# Not a bug, for some reason it is retrieved as a string when the field is initialized from install task
-		if 'firstUse' not in config.conf['sprites'] or config.conf['sprites']['firstUse'] == 'True' or config.conf['sprites']['firstUse']:
+		# TODO: remove this log statement after confirming firstUse has been changed
+		log.info('firstUse: ' + str(config.conf['sprites']['firstUse']))
+		if 'firstUse' not in config.conf['sprites'] or config.conf['sprites']['firstUse'] == 'True':
 			self.showFirstUseDialog()
 
 	def showFirstUseDialog(self):
 		config.conf['sprites']['firstUse'] = False
 		webbrowser.open('https://make4all.github.io/sprites/firstUseMessage.html')
-		log.info('firstUse: ' + str(config.conf['sprites']['firstUse']))
 
 	def terminate(self):
 		self.removeHooks()
