@@ -13,6 +13,7 @@ import time
 import review
 import wx
 import gui
+import textInfos
 import threading
 from .spritesTable import SpritesTable
 from .dialogs import SearchDialog
@@ -98,13 +99,12 @@ class AppModule(appModuleHandler.AppModule):
 		'''
 		try:
 			original_handleCaretMove(pos, *args, **kwargs)
-			nav = api.getNavigatorObject()
-			tableInfo = self.getTableInfo(nav)
+			tableInfo = self.getTableInfo()
 			if tableInfo and not self.hasAnnouncedTable and not self.spritesMode:
 				self.hasAnnouncedTable = True
 				# Translators: message announcing sprites mode is available upon entry to a table
 				ui.message(_('Sprites mode available. Press NVDA+Shift+T to activate.'))
-				self.logHelper.logTableFound(None, None, tableInfo[0].rowCount, tableInfo[0].columnCount)
+				self.logHelper.logTableFound(None, None, tableInfo[1], tableInfo[2])
 			if not tableInfo:
 				self.hasAnnouncedTable = False
 		except Exception:
@@ -152,12 +152,11 @@ class AppModule(appModuleHandler.AppModule):
 		Toggle sprites mode on and set up the table state and gestures
 		'''
 		try:
-			nav = api.getNavigatorObject()
 			# retreive the table object and tableID if available
-			tableInfo = self.getTableInfo(nav)
+			tableInfo = self.getTableInfo()
 			if tableInfo:
-				tableObj, tableID = tableInfo
-				self.table = SpritesTable(tableObj, tableID, len(self.rowKeys), len(self.columnKeys))
+				tableID, rowCount, columnCount = tableInfo
+				self.table = SpritesTable(tableID, rowCount, columnCount, len(self.rowKeys), len(self.columnKeys))
 				# Translators: message announcing sprites mode activation and the key to exit
 				ui.message(_('Sprites mode on. Press escape to exit. Press F to enter search mode.'))
 				# bind gestures to the table
@@ -167,7 +166,7 @@ class AppModule(appModuleHandler.AppModule):
 				self.spritesID = int(config.conf['sprites']['spritesID']) + 1
 				config.conf['sprites']['spritesID'] = self.spritesID
 				self.logHelper.logSpritesToggle(self.spritesID, None, 'on')
-				self.logHelper.logTableInfo(self.spritesID, None, tableObj.rowCount, tableObj.columnCount)
+				self.logHelper.logTableInfo(self.spritesID, None, rowCount, columnCount)
 				self.speakMapping()
 				self.spritesMode = True
 			else:
@@ -177,7 +176,7 @@ class AppModule(appModuleHandler.AppModule):
 			self.logHelper.logErrorException(None, None, traceback.format_exc())
 
 
-	def getTableInfo(self, nav):
+	def getTableInfo(self):
 		'''
 		Returns the table object and the tableID associated with the given navigator object
 		Returns None if the navigator is currently not in a table
@@ -186,20 +185,22 @@ class AppModule(appModuleHandler.AppModule):
 		try:
 			selection = focus.treeInterceptor.selection
 			tableID, origRow, origCol, origRowSpan, origColSpan = focus.treeInterceptor._getTableCellCoords(selection)
+			if selection.isCollapsed:
+				selection = selection.copy()
+				selection.expand(textInfos.UNIT_CHARACTER)
+			fields = list(selection.getTextWithFields())
+			for field in fields:
+				if not (isinstance(field, textInfos.FieldCommand) and field.command == "controlStart"):
+					# Not a control field.
+					continue
+				attrs = field.field
+				tableID = attrs.get('table-id')
+				if tableID is not None:
+					break
+			return (attrs["table-id"],
+				int(attrs["table-rowcount"]), int(attrs["table-columncount"]))
 		except (AttributeError, LookupError):
 			return None
-		try:
-			while nav.parent and not nav.table:
-				nav = nav.parent
-		except NotImplementedError:
-			return None
-		if not nav.parent:
-			return None
-		# found table
-		if nav.role == controlTypes.ROLE_TABLE:
-			return nav, tableID
-		elif nav.table:
-			return nav.table, tableID
 
 	def bindSpritesGesture(self):
 		'''
@@ -429,7 +430,7 @@ class AppModule(appModuleHandler.AppModule):
 		currRow, currColumn = self.table.getCurrPosition()
 		if self.table.hasResultAt(currRow, currColumn):
 			ui.message(_('Found'))
-		speech.speakTextInfo(info, formatConfig=formatConfig, reason=controlTypes.REASON_CARET)
+		speech.speakTextInfo(info, formatConfig=formatConfig, reason=controlTypes.OutputReason.CARET)
 		# Announce other occurrences on the same row/column
 		# if the given position contains search result, would exclude current position
 		# when calculating the occurrences

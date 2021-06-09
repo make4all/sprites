@@ -11,14 +11,14 @@ class SpritesTable():
 	'''
 	A class keeping track of the states of the sprites table
 	'''
-	def __init__(self, tableObj, tableID, rowKeyCount, columnKeyCount, test=False):
+	def __init__(self, tableID, rowCount, columnCount, rowKeyCount, columnKeyCount, test=False):
 		self.tableID = tableID
 		if not test:
 			self.interceptor = api.getFocusObject().treeInterceptor
 
 		# stores the initial row and column count for the table object
-		self.rowCount = tableObj.rowCount
-		self.columnCount = tableObj.columnCount
+		self.rowCount = rowCount
+		self.columnCount = columnCount
 		# list of row and column index including all rows and columns
 		self.allRows = [r + 1 for r in range(self.rowCount)]
 		self.allColumns = [c + 1 for c in range(self.columnCount)]
@@ -70,7 +70,7 @@ class SpritesTable():
 		info = self.interceptor._getTableCellAt(self.tableID, selection, self.currRow, self.currColumn)
 		# move browse mode selection
 		self.interceptor.selection = info
-		log.info(f'switch to row {self.currRow} column {self.currColumn}')
+		# log.info(f'switch to row {self.currRow} column {self.currColumn}')
 		return info
 
 	def changeRowOffset(self, delta):
@@ -166,8 +166,6 @@ class SpritesTable():
 					if m:
 						foundCells.append((r, c))
 					startPos = info
-			log.info('logging found rows and columns')
-			log.info(foundCells)
 			if foundCells:
 				self.searchResults = foundCells
 				self.searchTerm = keyword

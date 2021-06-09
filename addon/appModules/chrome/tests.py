@@ -1,16 +1,9 @@
 import unittest
 from spritesTable import SpritesTable
 
-
-class DummyTable:
-	def __init__(self, rowCount, columnCount):
-		self.rowCount = rowCount
-		self.columnCount = columnCount
-
-
 class TestSpritesTable(unittest.TestCase):
 	def testInit(self):
-		t = SpritesTable(DummyTable(3, 4), 1, 5, 13, True)
+		t = SpritesTable(1, 3, 4, 5, 13, True)
 		self.assertEqual(t.tableID, 1)
 		self.assertEqual(t.rowCount, 3)
 		self.assertEqual(t.columnCount, 4)
@@ -32,7 +25,7 @@ class TestSpritesTable(unittest.TestCase):
 		self.assertFalse(t.filterColumns)
 
 	def testChangeRowOffset(self):
-		t = SpritesTable(DummyTable(3, 4), 1, 5, 13, True)
+		t = SpritesTable(1, 3, 4, 5, 13, True)
 		t.changeRowOffset(2)
 		self.assertEqual(t.currRow, 3)
 		t.changeRowOffset(-1)
@@ -42,7 +35,7 @@ class TestSpritesTable(unittest.TestCase):
 		self.assertEqual(t.currRow, 1)
 	
 	def testChangeColumnOffset(self):
-		t = SpritesTable(DummyTable(3, 4), 1, 5, 13, True)
+		t = SpritesTable(1, 3, 4, 5, 13, True)
 		t.changeColumnOffset(3)
 		self.assertEqual(t.currColumn, 4)
 		t.changeColumnOffset(-1)
@@ -52,7 +45,7 @@ class TestSpritesTable(unittest.TestCase):
 		self.assertEqual(t.currColumn, 1)
 	
 	def testScrollRowsRegular(self):
-		t = SpritesTable(DummyTable(6, 4), 1, 5, 13, True)
+		t = SpritesTable(1, 6, 4, 5, 13, True)
 		# cannot scroll to previous at start
 		self.assertFalse(t.scroll(direction=0, keyIdx=0))
 		self.assertTrue(t.scroll(direction=0, keyIdx=4))
@@ -66,7 +59,7 @@ class TestSpritesTable(unittest.TestCase):
 	
 	def testScrollRowsEdge(self):
 		# test table with 10 rows
-		t = SpritesTable(DummyTable(10, 4), 1, 5, 13, True)
+		t = SpritesTable(1, 10, 4, 5, 13, True)
 		# cannot scroll to previous at start
 		self.assertFalse(t.scroll(direction=0, keyIdx=0))
 		self.assertTrue(t.scroll(direction=0, keyIdx=4))
@@ -80,7 +73,7 @@ class TestSpritesTable(unittest.TestCase):
 	
 	def testScrollColumnsRegular(self):
 		# assume 3 keys for navigate columns
-		t = SpritesTable(DummyTable(6, 4), 1, 5, 3, True)
+		t = SpritesTable(1, 6, 4, 5, 3, True)
 		# cannot scroll to previous at start
 		self.assertFalse(t.scroll(direction=1, keyIdx=0))
 		self.assertTrue(t.scroll(direction=1, keyIdx=2))
@@ -94,7 +87,7 @@ class TestSpritesTable(unittest.TestCase):
 	
 	def testScrollColumnsEdge(self):
 		# test table with 6 columns
-		t = SpritesTable(DummyTable(6, 6), 1, 5, 3, True)
+		t = SpritesTable(1, 6, 6, 5, 3, True)
 		# cannot scroll to previous at start
 		self.assertFalse(t.scroll(direction=1, keyIdx=0))
 		self.assertTrue(t.scroll(direction=1, keyIdx=2))
@@ -107,7 +100,7 @@ class TestSpritesTable(unittest.TestCase):
 		self.assertFalse(t.scroll(direction=1, keyIdx=0))
 
 	def testNextResult(self):
-		t = SpritesTable(DummyTable(4, 5), 1, 5, 13, True)
+		t = SpritesTable(1, 4, 5, 5, 13, True)
 		t.searchResults = [(1, 1), (2, 3), (3, 3), (3, 4), (3, 5)]
 		# go through all results using next
 		self.assertTrue(t.nextResult())
@@ -129,7 +122,7 @@ class TestSpritesTable(unittest.TestCase):
 		self.assertEqual(t.getMappedColumns(), [5])
 
 	def testPrevResult(self):
-		t = SpritesTable(DummyTable(4, 5), 1, 5, 13, True)
+		t = SpritesTable(1, 4, 5, 5, 13, True)
 		t.searchResults = [(1, 1), (2, 3), (3, 3), (3, 4), (3, 5)]
 		t.resultIdx = 4
 		t.onSearchResult = True
@@ -154,7 +147,7 @@ class TestSpritesTable(unittest.TestCase):
 		self.assertEqual(t.getCurrPosition(), (1, 1))
 
 	def testGetOccurrences(self):
-		t = SpritesTable(DummyTable(4, 5), 1, 5, 13, True)
+		t = SpritesTable(1, 4, 5, 5, 13, True)
 		t.searchResults = [(1, 1), (2, 3), (3, 3), (3, 4), (3, 5)]
 		# start off at (1, 1)
 		self.assertEqual(t.getOccurrences(), (0, 0))
@@ -172,7 +165,7 @@ class TestSpritesTable(unittest.TestCase):
 		self.assertEqual(t.getOccurrences(), (0, 0))
 	
 	def testFilters(self):
-		t = SpritesTable(DummyTable(4, 5), 1, 5, 13, True)
+		t = SpritesTable(1, 4, 5, 5, 13, True)
 		t.searchResults = [(1, 1), (2, 3), (3, 3), (3, 4), (3, 5)]
 		t.filterRows = True
 		t.checkAndApplyFilters()
@@ -195,7 +188,7 @@ class TestSpritesTable(unittest.TestCase):
 		self.assertEqual(t.columns, [1, 2, 3, 4, 5])
 
 	def testExpandTable(self):
-		t = SpritesTable(DummyTable(8, 10), 1, 5, 4, True)
+		t = SpritesTable(1, 8, 10, 5, 4, True)
 		t.searchResults = [(2, 2), (4, 7), (6, 3)]
 		t.filterRows = True
 		t.resultIdx = 0
