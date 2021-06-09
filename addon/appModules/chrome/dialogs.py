@@ -1,12 +1,10 @@
 import api
 from core import callLater
 import wx
-import wx.html as html
 from gui import guiHelper, SettingsPanel
 import config
 import os
 import webbrowser
-from .firstUseMessage import firstUseMessage
 
 
 class SpritesSettingsPanel(SettingsPanel):
@@ -140,21 +138,4 @@ class SearchResultDialog(wx.Dialog):
 
 	def onOk(self, event):
 		callLater(100, self.addOn.onJump, self.resultCheckBox.GetValue())
-		self.Destroy()
-
-
-class FirstUseMessageDialog(wx.Dialog):
-	def __init__(self, parent):
-		super().__init__(parent, title=_('SPRITEs initial screen with info about logging'))
-		mainSizer = wx.BoxSizer(wx.VERTICAL)
-		self.html = html.HtmlWindow(self)
-		self.html.setPage(firstUseMessage)
-		self.SetSizer(mainSizer)
-		mainSizer.Add(self.html, 1, wx.ALL|wx.EXPAND, 0)
-		self.Bind(wx.EVT_BUTTON, self.onOk, id=wx.ID_OK)
-		self.EscapeId = wx.ID_OK
-		mainSizer.Fit(self)
-		self.CentreOnScreen()
-
-	def onOk(self, event):
 		self.Destroy()

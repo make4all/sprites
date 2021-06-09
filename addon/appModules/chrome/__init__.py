@@ -19,14 +19,13 @@ from .spritesTable import SpritesTable
 from .dialogs import SearchDialog
 from .dialogs import SearchResultDialog
 from .dialogs import SpritesSettingsPanel
-from .dialogs import FirstUseMessageDialog
 from .logHelper import LogHelper
-from .firstUseMessage import firstUseMessage
 import os
 from gui import NVDASettingsDialog
 import uuid
 import traceback
 from datetime import date
+import webbrowser
 
 path = os.path.join(os.environ['APPDATA'], 'nvda\\sprites')
 if not os.path.exists(path):
@@ -45,7 +44,7 @@ if 'logPath' not in config.conf['sprites']:
 	config.conf['sprites']['logPath'] = path
 if 'logStart' not in config.conf['sprites']:
 	config.conf['sprites']['logStart'] = date.today().strftime('%Y-%m-%d')
-if 'firstUse' not in config.conf['firstUse']:
+if 'firstUse' not in config.conf['sprites']:
 	config.conf['sprites']['firstUse'] = True
 
 
@@ -72,16 +71,13 @@ class AppModule(appModuleHandler.AppModule):
 		self.logHelper = LogHelper()
 		self.searchStartTime = None
 		NVDASettingsDialog.categoryClasses.append(SpritesSettingsPanel)
-		# Not a bug, for some reason it is retrieved as a string
-		if 'firstUse' not in config.conf['sprites'] or config.conf['sprites']['firstUse'] == 'True':
+		# Not a bug, for some reason it is retrieved as a string when the field is initialized from install task
+		if 'firstUse' not in config.conf['sprites'] or config.conf['sprites']['firstUse'] == 'True' or config.conf['sprites']['firstUse']:
 			self.showFirstUseDialog()
 
 	def showFirstUseDialog(self):
 		config.conf['sprites']['firstUse'] = False
-		gui.mainFrame.prePopup()
-		dialog = FirstUseMessageDialog(gui.mainFrame)
-		dialog.ShowModal()
-		gui.mainFrame.postPopup()
+		webbrowser.open('https://make4all.github.io/sprites/firstUseMessage.html')
 
 	def terminate(self):
 		self.removeHooks()
