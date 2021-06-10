@@ -39,3 +39,5 @@ def onUninstall():
 	os.remove(config.conf['sprites']['logPath'] + '\\log.txt')
 	os.rmdir(config.conf['sprites']['logPath'])
 	config.conf['sprites'] = {}
+	config.conf.spec['sprites'] = {}
+	config.conf.save()
