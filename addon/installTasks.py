@@ -26,15 +26,18 @@ def onInstall():
 	config.conf['sprites']['firstUse'] = True
 	config.conf['sprites']['logStart'] = date.today().strftime('%Y-%m-%d')
 
-	path = os.path.join(os.environ['APPDATA'], 'nvda\sprites')
+	path = os.path.join(os.environ['APPDATA'], 'nvda\\sprites')
 	config.conf['sprites']['logPath'] = path
 	if not os.path.exists(path):
 		os.makedirs(path)
-	logFileName = path + '\log.txt'
+	logFileName = path + '\\log.txt'
 	f = open(logFileName, 'w', encoding='utf-8')
 	f.close()
 
 
 def onUninstall():
-	os.remove(config.conf['sprites']['logPath'] + '\log.txt')
+	os.remove(config.conf['sprites']['logPath'] + '\\log.txt')
 	os.rmdir(config.conf['sprites']['logPath'])
+	config.conf['sprites'] = {}
+	config.conf.spec['sprites'] = {}
+	config.conf.save()

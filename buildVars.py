@@ -25,7 +25,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description": _("""This addon introduces a non-linear navigation mode called SPRITEs to navigate tables on webpages browsed using google Chrome."""),
 	# version
-	"addon_version": "0.9.1",
+	"addon_version": "0.9.2",
 	# Author(s)
 	"addon_author": "Venkatesh Potluri <vpotluri@cs.washington.edu>",
 	# URL for the add-on documentation support

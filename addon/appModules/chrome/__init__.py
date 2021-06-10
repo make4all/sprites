@@ -20,14 +20,14 @@ from .dialogs import SearchDialog
 from .dialogs import SearchResultDialog
 from .dialogs import SpritesSettingsPanel
 from .logHelper import LogHelper
-from .firstUseMessage import firstUseMessage
 import os
 from gui import NVDASettingsDialog
 import uuid
 import traceback
 from datetime import date
+import webbrowser
 
-path = os.path.join(os.environ['APPDATA'], 'nvda\sprites')
+path = os.path.join(os.environ['APPDATA'], 'nvda\\sprites')
 if not os.path.exists(path):
 	os.makedirs(path)
 if 'sprites' not in config.conf:
@@ -43,9 +43,14 @@ if 'userID' not in config.conf['sprites']:
 if 'logPath' not in config.conf['sprites']:
 	config.conf['sprites']['logPath'] = path
 if 'logStart' not in config.conf['sprites']:
-	config.conf['sprites']['logStart'] = str(date.today())
-# config.conf['sprites']['firstUse'] = True
+	config.conf['sprites']['logStart'] = date.today().strftime('%Y-%m-%d')
+if 'firstUse' not in config.conf['sprites']:
+	config.conf['sprites']['firstUse'] = 'True'
 
+# Translators: The key on the right of the "0" key in the alpha-numeric part of the keyboard.
+KEY_11 = _("-")
+# Translators: The key just on the left of the backspace key.
+KEY_12 = _("=")
 
 class AppModule(appModuleHandler.AppModule):
 
@@ -70,13 +75,15 @@ class AppModule(appModuleHandler.AppModule):
 		self.logHelper = LogHelper()
 		self.searchStartTime = None
 		NVDASettingsDialog.categoryClasses.append(SpritesSettingsPanel)
-		# Not a bug, for some reason it is retrieved as a string
-		if config.conf['sprites']['firstUse'] == 'True':
+		# Not a bug, for some reason it is retrieved as a string when the field is initialized from install task
+		# TODO: remove this log statement after confirming firstUse has been changed
+		log.info('firstUse: ' + str(config.conf['sprites']['firstUse']))
+		if 'firstUse' not in config.conf['sprites'] or config.conf['sprites']['firstUse'] == 'True':
 			self.showFirstUseDialog()
 
 	def showFirstUseDialog(self):
 		config.conf['sprites']['firstUse'] = False
-		ui.browseableMessage(message=firstUseMessage, title='SPRITEs initial screen with info about logging', isHtml=True)
+		webbrowser.open('https://make4all.github.io/sprites/firstUseMessage.html')
 
 	def terminate(self):
 		self.removeHooks()
@@ -131,7 +138,7 @@ class AppModule(appModuleHandler.AppModule):
 		self.specialKeys = None
 		if self.keyboard == 'EN_US':
 			self.rowKeys = ['`', 'tab', 'capsLock', 'leftShift', 'leftControl']
-			self.columnKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=']
+			self.columnKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', KEY_11, KEY_12]
 			self.specialKeys = {'capsLock', 'leftShift', 'leftControl'}
 			self.otherKeys = {'escape', 'f', 'upArrow', 'downArrow', 'rightShift', 'rightControl', 'r', 'c', 'b'}
 		# save all gestures available when sprites mode is on in a set
@@ -236,7 +243,7 @@ class AppModule(appModuleHandler.AppModule):
 		mappedRowRange = list(self.rowKeys[0:len(mappedRows)])
 		mappedRowRange[0] = 'graav'
 
-		rowCombo = ' comma '.join(mappedRowRange)
+		rowCombo = ', '.join(mappedRowRange)
 		if len(mappedColumns) == 1:
 			columnCombo = '1'
 		else:
