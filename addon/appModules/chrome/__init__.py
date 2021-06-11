@@ -26,10 +26,27 @@ import uuid
 import traceback
 from datetime import date
 import webbrowser
+import globalVars
 
-path = os.path.join(os.environ['APPDATA'], 'nvda\\sprites')
-if not os.path.exists(path):
-	os.makedirs(path)
+confspec = {
+	'userID': "string(default='')",
+	'logID': "integer(default=0)",
+	'spritesID': "integer(default=0)",
+	'searchID': "integer(default=0)",
+	'firstUse': "boolean(default=True)",
+	'logStart': "string(default='')",
+	'logPath': "string(default='')"
+}
+
+config.conf.spec['sprites'] = confspec
+
+LOG_PATH = os.path.join(globalVars.appArgs.configPath, "addons", "sprites-nvda", "logs")
+
+if not os.path.exists(LOG_PATH):
+	os.makedirs(LOG_PATH)
+	logFileName = LOG_PATH + '\\log.txt'
+	f = open(logFileName, 'w', encoding='utf-8')
+	f.close()
 if 'sprites' not in config.conf:
 	config.conf['sprites'] = {}
 if 'spritesID' not in config.conf['sprites']:
@@ -40,17 +57,20 @@ if 'logID' not in config.conf['sprites']:
 	config.conf['sprites']['logID'] = 0
 if 'userID' not in config.conf['sprites']:
 	config.conf['sprites']['userID'] = str(uuid.uuid1())
-if 'logPath' not in config.conf['sprites']:
-	config.conf['sprites']['logPath'] = path
-if 'logStart' not in config.conf['sprites']:
+if 'logPath' not in config.conf['sprites'] or config.conf['sprites']['logPath'] == '':
+	config.conf['sprites']['logPath'] = LOG_PATH
+if 'logStart' not in config.conf['sprites'] or config.conf['sprites']['logStart'] == '':
 	config.conf['sprites']['logStart'] = date.today().strftime('%Y-%m-%d')
 if 'firstUse' not in config.conf['sprites']:
-	config.conf['sprites']['firstUse'] = 'True'
+	config.conf['sprites']['firstUse'] = True
 
 # Translators: The key on the right of the "0" key in the alpha-numeric part of the keyboard.
 KEY_11 = _("-")
 # Translators: The key just on the left of the backspace key.
 KEY_12 = _("=")
+# Translators: The key just on the left of the "1" key. If this has to be modified for a different layout,
+# please also change the key mapping in self.rowKeys definition
+ROW_KEY_1 = _("graav")
 
 class AppModule(appModuleHandler.AppModule):
 
@@ -78,7 +98,7 @@ class AppModule(appModuleHandler.AppModule):
 		# Not a bug, for some reason it is retrieved as a string when the field is initialized from install task
 		# TODO: remove this log statement after confirming firstUse has been changed
 		log.info('firstUse: ' + str(config.conf['sprites']['firstUse']))
-		if 'firstUse' not in config.conf['sprites'] or config.conf['sprites']['firstUse'] == 'True':
+		if 'firstUse' not in config.conf['sprites'] or config.conf['sprites']['firstUse'] == True:
 			self.showFirstUseDialog()
 
 	def showFirstUseDialog(self):
@@ -241,7 +261,7 @@ class AppModule(appModuleHandler.AppModule):
 		mappedColumns = self.table.getMappedColumns()
 		# handle graav key not being spoken as it-is
 		mappedRowRange = list(self.rowKeys[0:len(mappedRows)])
-		mappedRowRange[0] = 'graav'
+		mappedRowRange[0] = ROW_KEY_1
 
 		rowCombo = ', '.join(mappedRowRange)
 		if len(mappedColumns) == 1:
@@ -251,7 +271,6 @@ class AppModule(appModuleHandler.AppModule):
 		mappedRowsString = ' '.join(str(r) for r in mappedRows)
 		mappedColumnsString = ' '.join(str(c) for c in mappedColumns)
 		# Translators: announces the mapping from each key to each row number and column number
-		# TODO: figure out how this announcement should be with a filtered table
 		ui.message(_(f'Keys {rowCombo} mapped to row {mappedRowsString}'))
 		ui.message(_(f'Keys {columnCombo} mapped to column {mappedColumnsString}'))
 		self.logHelper.logMapping(self.spritesID, self.searchID, mappedRows, mappedColumns)
@@ -263,7 +282,7 @@ class AppModule(appModuleHandler.AppModule):
 		rowScrollKeys = []
 		if self.table.hasPreviousRows():
 			# handle graav key not being spoken as it-is
-			rowScrollKeys.append('graav')
+			rowScrollKeys.append(ROW_KEY_1)
 		if self.table.hasNextRows():
 			rowScrollKeys.append(self.rowKeys[-1])
 		if rowScrollKeys:

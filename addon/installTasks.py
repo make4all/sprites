@@ -3,6 +3,7 @@ import uuid
 import os
 from datetime import date
 from logHandler import log
+import globalVars
 
 
 confspec = {
@@ -10,29 +11,23 @@ confspec = {
 	'logID': "integer(default=0)",
 	'spritesID': "integer(default=0)",
 	'searchID': "integer(default=0)",
-	'firstUse': "boolean(default=False)",
+	'firstUse': "boolean(default=True)",
 	'logStart': "string(default='')",
 	'logPath': "string(default='')"
 }
 
 config.conf.spec['sprites'] = confspec
-
-
+LOG_PATH = os.path.join(globalVars.appArgs.configPath, "addons", "sprites-nvda", "logs")
+log.info(LOG_PATH)
 def onInstall():
 	config.conf['sprites']['userID'] = str(uuid.uuid1())
 	config.conf['sprites']['logID'] = 0
 	config.conf['sprites']['spritesID'] = 0
 	config.conf['sprites']['searchID'] = 0
-	config.conf['sprites']['firstUse'] = True
 	config.conf['sprites']['logStart'] = date.today().strftime('%Y-%m-%d')
 
-	path = os.path.join(os.environ['APPDATA'], 'nvda\\sprites')
+	path = LOG_PATH
 	config.conf['sprites']['logPath'] = path
-	if not os.path.exists(path):
-		os.makedirs(path)
-	logFileName = path + '\\log.txt'
-	f = open(logFileName, 'w', encoding='utf-8')
-	f.close()
 
 
 def onUninstall():
