@@ -15,7 +15,7 @@ class SpritesTable():
 		self.tableID = tableID
 		if not test:
 			self.interceptor = api.getFocusObject().treeInterceptor
-
+			log.info(self.interceptor.selection)
 		# stores the initial row and column count for the table object
 		self.rowCount = rowCount
 		self.columnCount = columnCount
@@ -159,12 +159,16 @@ class SpritesTable():
 			foundCells = list()
 			for r in self.allRows:
 				for c in self.allColumns:
-					info = self.interceptor._getTableCellAt(self.tableID, startPos, r, c)
-					info.expand(textInfos.UNIT_PARAGRAPH)
-					text = info._get_text()
-					m = re.search(re.escape(keyword), text, (re.UNICODE if caseSensitive else re.IGNORECASE))
-					if m:
-						foundCells.append((r, c))
+					log.info(f'at row {r} col {c}')
+					try:
+						info = self.interceptor._getTableCellAt(self.tableID, startPos, r, c)
+						info.expand(textInfos.UNIT_PARAGRAPH)
+						text = info._get_text()
+						m = re.search(re.escape(keyword), text, (re.UNICODE if caseSensitive else re.IGNORECASE))
+						if m:
+							foundCells.append((r, c))
+					except LookupError:
+						pass
 					startPos = info
 			if foundCells:
 				self.searchResults = foundCells

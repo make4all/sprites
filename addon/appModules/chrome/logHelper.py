@@ -4,15 +4,35 @@ from datetime import date
 import threading
 import config
 from logHandler import log
+import addonHandler
+import os
 
+ADDON_NAME = addonHandler.getCodeAddon().manifest["name"]
+
+def thisAddon():
+	for addon in addonHandler.getRunningAddons():
+		if addon.name == ADDON_NAME:
+			return addon
+	return None
 
 class LogHelper:
 
 	def __init__(self):
-		self.path = config.conf['sprites']['logPath']
-		self.logFileName = self.path + '\\log.txt'
-		self.lock = threading.Lock()
-		self.checkDate()
+		addon = thisAddon()
+		if addon is None:
+			raise RuntimeError('Error retrieving addon path')
+		else:
+			self.path = os.path.join(addon.path, 'logs')
+			self.logFileName = os.path.join(self.path, 'log.txt')
+			if not os.path.exists(self.path):
+				try:
+					os.makedirs(self.path)
+					f = open(self.logFileName, 'w', encoding='utf-8')
+					f.close()
+				except Exception:
+					raise RuntimeError('Error creating log file directory')
+			self.lock = threading.Lock()
+			self.checkDate()
 
 	def checkDate(self):
 		dateString = config.conf['sprites']['logStart']
@@ -25,14 +45,20 @@ class LogHelper:
 
 	def clearLog(self):
 		with self.lock:
-			f = open(self.logFileName, 'w', encoding='utf-8')
-			f.close()
+			try:
+				f = open(self.logFileName, 'w', encoding='utf-8')
+				f.close()
+			except Exception:
+				raise RuntimeError('Failed to clear log file')
 
 	def log(self, logObj):
 		with self.lock:
-			f = open(self.logFileName, 'a', encoding='utf-8')
-			print(logObj.stringify(), file=f)
-			f.close()
+			try:
+				f = open(self.logFileName, 'a', encoding='utf-8')
+				print(logObj.stringify(), file=f)
+				f.close()
+			except Exception:
+				raise RuntimeError('Cannot write to log file')
 
 	def logSpritesToggle(self, spritesID, searchID, state):
 		self.updateID()

@@ -40,13 +40,6 @@ confspec = {
 
 config.conf.spec['sprites'] = confspec
 
-LOG_PATH = os.path.join(globalVars.appArgs.configPath, "addons", "sprites-nvda", "logs")
-
-if not os.path.exists(LOG_PATH):
-	os.makedirs(LOG_PATH)
-	logFileName = LOG_PATH + '\\log.txt'
-	f = open(logFileName, 'w', encoding='utf-8')
-	f.close()
 if 'sprites' not in config.conf:
 	config.conf['sprites'] = {}
 if 'spritesID' not in config.conf['sprites']:
@@ -57,8 +50,6 @@ if 'logID' not in config.conf['sprites']:
 	config.conf['sprites']['logID'] = 0
 if 'userID' not in config.conf['sprites']:
 	config.conf['sprites']['userID'] = str(uuid.uuid1())
-if 'logPath' not in config.conf['sprites'] or config.conf['sprites']['logPath'] == '':
-	config.conf['sprites']['logPath'] = LOG_PATH
 if 'logStart' not in config.conf['sprites'] or config.conf['sprites']['logStart'] == '':
 	config.conf['sprites']['logStart'] = date.today().strftime('%Y-%m-%d')
 if 'firstUse' not in config.conf['sprites']:
